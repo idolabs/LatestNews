@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00BB0A661605D3F20035E61D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 00BB0A651605D3F20035E61D /* README.md */; };
+		00BB0A681605D4BE0035E61D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 00BB0A671605D4BE0035E61D /* .gitignore */; };
 		230766ED15FB90B100667093 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230766EC15FB90B100667093 /* SystemConfiguration.framework */; };
 		230766F115FB919B00667093 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 230766F015FB919B00667093 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		230767101604ADB500667093 /* icon_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 2307670F1604ADB500667093 /* icon_iphone.png */; };
@@ -87,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00BB0A651605D3F20035E61D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		00BB0A671605D4BE0035E61D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		230766EC15FB90B100667093 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		230766EF15FB919B00667093 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		230766F015FB919B00667093 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 		23C5E77C15F253FB008DACFA = {
 			isa = PBXGroup;
 			children = (
+				00BB0A671605D4BE0035E61D /* .gitignore */,
+				00BB0A651605D3F20035E61D /* README.md */,
 				230767151604ADCA00667093 /* icon_ipad@2x.png */,
 				230767131604ADC600667093 /* icon_ipad.png */,
 				230767111604ADBB00667093 /* icon@2x.png */,
@@ -525,6 +531,8 @@
 				230767221604BEB800667093 /* Default-Portrait@2x~ipad.png in Resources */,
 				230767291604C10C00667093 /* Default-Landscape@2x~ipad.png in Resources */,
 				2307672A1604C10C00667093 /* Default-Landscape~ipad.png in Resources */,
+				00BB0A661605D3F20035E61D /* README.md in Resources */,
+				00BB0A681605D4BE0035E61D /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
