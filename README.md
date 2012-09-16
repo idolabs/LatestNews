@@ -1,13 +1,21 @@
 # Latest News (Mobil Haber)
 
-Mobil Haber is a visual RSS reader application. It retrieves data from popular Turkish News Agencies and News papers' RSS services. This app is free of charge and there is no advertisement.
+
+## Overview
+
+Mobil Haber is a visual RSS reader application designed for iOS devices. It retrieves data from popular Turkish News Agencies 
+and News papers' RSS services.
+This app is free of charge and ads-free in order to provide a better user experience.
+
+## Features
+
+TODO: list features here...
+
+## Support
 
 support email: support@idolabs.com
 
-##
-
-
-# License
+## License
 
 (The MIT License)
 
