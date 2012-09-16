@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="272-BH-fcA">
+    <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+    </dependencies>
+    <scenes>
+        <!--Main Table View Controller - Mobil Haber-->
+        <scene sceneID="51P-Ed-ZbX">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1MJ-gC-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="F7f-eo-SnR" customClass="MainTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="P7f-0x-QSA">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ID__MAIN_TABLE_CELL" id="FSX-0E-dJ3" customClass="MainTableCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="F7f-eo-SnR" id="R1f-7h-GWS"/>
+                            <outlet property="delegate" destination="F7f-eo-SnR" id="Dx1-Pb-VMG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Mobil Haber" id="JsR-aD-pVM">
+                        <barButtonItem key="backBarButtonItem" title="Geri" id="ZXe-iH-0Km"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="f8r-Tx-4tt">
+                            <connections>
+                                <action selector="refreshButtonAction:" destination="F7f-eo-SnR" id="2eh-qQ-bGh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="refreshButton" destination="f8r-Tx-4tt" id="yng-g9-2U1"/>
+                        <segue destination="3Hw-gY-YDU" kind="push" identifier="SEGUE__NEWS_ITEM_WEB_VIEW" id="38F-wZ-Frs"/>
+                        <segue destination="gbs-nh-Xws" kind="modal" identifier="infoCurlSegue" modalTransitionStyle="partialCurl" id="oQf-Uq-MmW"/>
+                    </connections>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1266" y="62"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="FGU-k8-Prd">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EEC-zn-shk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="gbs-nh-Xws" customClass="InfoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VQF-VK-j2b">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="tasarım ve geliştirme: Bahaddin Yaşar &amp; İnanç Sevinç" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Y9w-eb-hBN">
+                                <rect key="frame" x="116" y="411" width="204" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Italic" family="Euphemia UCAS" pointSize="13"/>
+                                <color key="textColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" indicatorStyle="black" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OvF-21-QTe">
+                                <rect key="frame" x="116" y="242" width="195" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="gbs-nh-Xws" id="YNS-ln-j48"/>
+                                    <outlet property="delegate" destination="gbs-nh-Xws" id="nuZ-58-1OM"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="sourcesTable" destination="OvF-21-QTe" id="KSF-wN-tGP"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1669" y="651"/>
+        </scene>
+        <!--News Item Web View Controller-->
+        <scene sceneID="yIe-gC-TRU">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TCZ-B2-iHA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="3Hw-gY-YDU" customClass="NewsItemWebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6VW-uz-ygB">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" id="nRd-C9-vY7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                        </subviews>
+                    </view>
+                    <navigationItem key="navigationItem" id="fqj-Oa-vEm"/>
+                    <connections>
+                        <outlet property="newsItemWebView" destination="nRd-C9-vY7" id="VQd-JL-Qyl"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1669" y="62"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="g4E-BZ-ds2">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7i2-W4-ckA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="272-BH-fcA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="lDs-54-r1K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" id="j2d-cG-Ii8">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="F7f-eo-SnR" kind="relationship" relationship="rootViewController" id="kXZ-Dy-nfD"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="740" y="62"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="InfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="sourcesTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="MainTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTableCell.h"/>
+        </class>
+        <class className="MainTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshButtonAction:"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="NewsItemWebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsItemWebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="newsItemWebView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
