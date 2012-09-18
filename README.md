@@ -1,4 +1,4 @@
-# Latest News (Mobil Haber)
+# <img src="https://raw.github.com/idolabs/LatestNews/master/icon_ipad.png" alt="AFNetworking"> Latest News (Mobil Haber)
 
 
 ## Overview
