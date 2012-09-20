@@ -30,7 +30,8 @@
 //        [self.view addGestureRecognizer:swipe];
 //    }
 
-    NSString *urlAddress = [(NewsItem*)[[AppDelegate getInstance].sharedContext objectForKey:SHARED_CONTEXT_KEY_SELECTED_NEWS_ITEM] contentUrl];
+    NSString *urlAddress = [[(NewsItem*)[[AppDelegate getInstance].sharedContext objectForKey:SHARED_CONTEXT_KEY_SELECTED_NEWS_ITEM] contentUrl] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
     _newsItemWebView.delegate = self;
     [self openURL:urlAddress];
 }
