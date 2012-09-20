@@ -212,18 +212,18 @@
 }
 
 -(void) parseDataInBackground:(GDataXMLDocument*)XMLDocument forKey:(NSString*)theKey {
-    
-    if(!XMLDocument)
-        return;
-    NSArray* items = [XMLDocument nodesForXPath:@"/rss/channel/item" error:nil];
-    if(!items)
-        return;
 
     static NSRegularExpression *imageUrlRegex = nil;
     if(!imageUrlRegex) {
         imageUrlRegex = [NSRegularExpression regularExpressionWithPattern:@"(http\\S+\\.(png|jpg|jpeg|gif)+)"
                                                                   options:NSRegularExpressionCaseInsensitive error:nil];
     }
+    
+    if(!XMLDocument)
+        return;
+    NSArray* items = [XMLDocument nodesForXPath:@"/rss/channel/item" error:nil];
+    if(!items)
+        return;
     
     NSString* rssChannelLink = [[[XMLDocument nodesForXPath:@"/rss/channel/link" error:nil] objectAtIndex:0] stringValue];
     XMLDocument = nil;
@@ -232,50 +232,53 @@
     for (GDataXMLNode* item in items) {
         @autoreleasepool { // to lower memory peaks, causes objects to be released in each loop iteration
             
-            NSString* link = [[[[item nodesForXPath:@"link/text()" error:nil] objectAtIndex:0] stringValue] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+            NSString* link  = [self parseNode:item forXPath:@"link/text()"  andNamespaces:nil];
+            NSString* title = [self parseNode:item forXPath:@"title/text()" andNamespaces:nil];
+            
             // eliminate duplicate items
-            if([linksDictionary objectForKey:link])
+            if([linksDictionary objectForKey:link] || !(link.length>0) || !(title.length>0))
                 continue;
+
             [linksDictionary setObject:link forKey:link];
-            NSString* title = [[[item nodesForXPath:@"title/text()" error:nil] objectAtIndex:0] stringValue];
+
             NSString* imageUrl = nil;
-            NSArray* mediaUrls = [item nodesForXPath:@"media:thumbnail/@url" namespaces:@{ @"media": @"http://search.yahoo.com/mrss/"} error:nil];
-            if(mediaUrls.count>0)
-                imageUrl = [[mediaUrls objectAtIndex:0] stringValue];
-            else {
-                mediaUrls = [item nodesForXPath:@"media:content/@url" namespaces:@{ @"media": @"http://search.yahoo.com/mrss/"} error:nil];
-                if (mediaUrls.count>0) {
-                    imageUrl = [[mediaUrls objectAtIndex:0] stringValue];
-                }
-                else {
-                    mediaUrls = [item nodesForXPath:@"img/text()" error:nil];
-                    if (mediaUrls.count>0) {
-                        imageUrl = [[mediaUrls objectAtIndex:0] stringValue];
+            
+            imageUrl = [self parseNode:item forXPath:@"media:thumbnail/@url" andNamespaces:@{ @"media": @"http://search.yahoo.com/mrss/"}];
+
+            if(!(imageUrl.length>0)){
+                [self parseNode:item forXPath:@"media:content/@url" andNamespaces:@{ @"media": @"http://search.yahoo.com/mrss/"}];
+                
+                if(!(imageUrl.length>0)){
+                    
+                    imageUrl = [self parseNode:item forXPath:@"img/text()" andNamespaces:nil];
+                    
+                    if(imageUrl.length>0){
                          // if the imageUrl is a relative link then concatenate it with the rss.link
                         if([imageUrl hasPrefix:@"http"] == NO){
                             imageUrl = [rssChannelLink stringByAppendingString:imageUrl];
                         }
                     }
                     else {
-                        mediaUrls = [item nodesForXPath:@"enclosure/@url" error:nil];
-                        if (mediaUrls.count>0) {
-                            imageUrl = [[mediaUrls objectAtIndex:0] stringValue];
-                        }
-                        else { // search description text for image urls
-                            NSArray* descriptions = [item nodesForXPath:@"description/text()" error:nil];
-                            if(descriptions.count>0) {
-                                NSString *description = [[descriptions objectAtIndex:0] stringValue];
+                        imageUrl = [self parseNode:item forXPath:@"enclosure/@url" andNamespaces:nil];
+                    
+                        if(!(imageUrl.length>0)){ // search description text for image urls
+                            
+                            NSString *description = [self parseNode:item forXPath:@"description/text()" andNamespaces:nil];
+                            
+                            if(description.length>0){
                                 NSRange range = [[imageUrlRegex firstMatchInString:description options:0 range:NSMakeRange(0, [description length])] range];
                                 imageUrl = [description substringWithRange:range];
                                 description = nil;
                             }
                         }
                     }
-                    
                 }
-                
             }
-        [newsItems addObject:[[NewsItem alloc] initWithTitle:title andContentUrl:link andImageUrl:imageUrl]];
+            
+            if(!(imageUrl.length>0))
+                continue;
+
+            [newsItems addObject:[[NewsItem alloc] initWithTitle:title andContentUrl:link andImageUrl:imageUrl]];
         }
     }
 
@@ -344,6 +347,21 @@
 -(NSArray*) sortedRssSourcesKeys {
     return ((NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__SORTED_RSS_SOURCES_KEYS]);
 }
+-(NSString*)parseNode:(GDataXMLNode*)node forXPath:(NSString*)xpath andNamespaces:(NSDictionary*)namespaces {
+    NSString* retVal = nil;
+    
+    NSArray* nodeArray = [node nodesForXPath:xpath namespaces:namespaces error:nil];
+    
+    if(nodeArray.count>0){
+        NSString* rawValue = [[nodeArray objectAtIndex:0] stringValue];
+    
+        if(rawValue.length>0)
+            retVal = [rawValue stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    }
+    
+    return retVal;
+}
+
 
 - (IBAction)refreshButtonAction:(id)sender {
     [self loadData];
