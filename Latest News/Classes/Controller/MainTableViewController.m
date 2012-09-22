@@ -378,8 +378,9 @@
 
     //Firstly, look userDefaults for rss sources
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary* rssSourcesImmutable = [userDefaults objectForKey:@"rss_sources"];
-    NSDate* expireDateOfRssSources = [userDefaults objectForKey:@"expireDateOfRssSources"];
+
+    NSDictionary* rssSourcesImmutable = [userDefaults objectForKey:USERDEFAULTS_KEY__RSS_SOURCES];
+    NSDate* expireDateOfRssSources = [userDefaults objectForKey:USERDEFAULTS_KEY__RSS_SOURCES_EXPIRE_DATE];
     
     if (rssSourcesImmutable && expireDateOfRssSources &&
         ([expireDateOfRssSources compare:[NSDate date]] == NSOrderedDescending)) {
@@ -388,8 +389,8 @@
     
     if (!rssSourcesData) {
         // retrieve rss sources from s3
-        NSURL *url = [NSURL URLWithString:@"https://s3.amazonaws.com/inancsevinc/rss_sources.plist"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:1];
+        NSURL *url = [NSURL URLWithString:RSS_SOURCES_PLIST_URL];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval: RSS_SOURCES_REQUEST_TIMEOUT_IN_SECONDS];
         
         NSHTTPURLResponse * urlResponse = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:nil];
@@ -410,7 +411,7 @@
                 if(urlResponseHeaders.count>0){
                     NSString* expires = [urlResponseHeaders objectForKey:@"Expires"];
                     
-                    double expiresAsDouble = 60;
+                    double expiresAsDouble = RSS_SOURCES_DEFAULT_RESPONSE_HEADER_EXPIRES;
                     if(expires)
                         expiresAsDouble = expires.doubleValue;
                     
@@ -418,12 +419,12 @@
                     
                     if(expireDate){
                         // persist the expireDate to userDefaults
-                        [userDefaults setObject:expireDate forKey:@"expireDateOfRssSources"];
+                        [userDefaults setObject:expireDate forKey:USERDEFAULTS_KEY__RSS_SOURCES_EXPIRE_DATE];
                     }
                 }
                 
                 // persist the rss sources to userDefaults
-                [userDefaults setObject:rssSourcesData forKey:@"rss_sources"];
+                [userDefaults setObject:rssSourcesData forKey:USERDEFAULTS_KEY__RSS_SOURCES];
                 [userDefaults synchronize];
             }
         }

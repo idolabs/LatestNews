@@ -47,4 +47,11 @@
 #define MAIN_TABLE_CELL__NEWS_ITEMS_TABLE_BACKGROUND_COLOR     [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.2]
 #define MAIN_TABLE_CELL__NEWS_ITEMS_TABLE_ROTATION  ROTATION_DEGREE_90_CCW
 
+#define RSS_SOURCES_PLIST_URL                       @"https://s3-eu-west-1.amazonaws.com/idolabs/rss_sources.plist"
+#define RSS_SOURCES_REQUEST_TIMEOUT_IN_SECONDS      1
+#define RSS_SOURCES_DEFAULT_RESPONSE_HEADER_EXPIRES 60
+
+#define USERDEFAULTS_KEY__RSS_SOURCES               @"RSS_SOURCES"
+#define USERDEFAULTS_KEY__RSS_SOURCES_EXPIRE_DATE   @"RSS_SOURCES_EXPIRE_DATE"
+
 #endif
