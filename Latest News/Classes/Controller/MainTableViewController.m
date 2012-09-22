@@ -58,7 +58,7 @@
     // highligt the info button for 1 sec
     [self infoButtonHighlighting:@"on"];
     
-    NSMutableDictionary* rssSourcesData = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"rss_sources" ofType:@"plist"]];
+    NSMutableDictionary* rssSourcesData = [self getRssSources];
     NSArray* sortedRssSourcesKeys = [rssSourcesData.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     
     [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
@@ -94,7 +94,7 @@
         [self.navigationController.navigationBar setNeedsDisplay];
         [self performSelector:@selector(updateRefreshButtonActivityIndicator) withObject:nil afterDelay:1.0f];
        
-        NSMutableDictionary* rssSourcesData = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"rss_sources" ofType:@"plist"]];
+        NSMutableDictionary* rssSourcesData = [self getRssSources];
         
         [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
         [self.tableView reloadData];
@@ -371,4 +371,70 @@
 //    [super didReceiveMemoryWarning]; causes table sections to overlap
     NSLog(@"maintableviewcontroller received memory warning");
 }
+
+
+-(NSMutableDictionary*) getRssSources{
+    NSMutableDictionary* rssSourcesData = nil;
+
+    //Firstly, look userDefaults for rss sources
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary* rssSourcesImmutable = [userDefaults objectForKey:@"rss_sources"];
+    NSDate* expireDateOfRssSources = [userDefaults objectForKey:@"expireDateOfRssSources"];
+    
+    if (rssSourcesImmutable && expireDateOfRssSources &&
+        ([expireDateOfRssSources compare:[NSDate date]] == NSOrderedDescending)) {
+        rssSourcesData = (__bridge NSMutableDictionary *)(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (__bridge CFPropertyListRef)(rssSourcesImmutable), kCFPropertyListMutableContainersAndLeaves));
+    }
+    
+    if (!rssSourcesData) {
+        // retrieve rss sources from s3
+        NSURL *url = [NSURL URLWithString:@"https://s3.amazonaws.com/inancsevinc/rss_sources.plist"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:1];
+        
+        NSHTTPURLResponse * urlResponse = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:nil];
+        
+        if(data && urlResponse && urlResponse.statusCode<300 && urlResponse.statusCode>=200 ){
+            NSString *errorDesc = nil;
+            NSPropertyListFormat format;
+            
+            rssSourcesData = [NSPropertyListSerialization
+                              propertyListFromData:data
+                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                              format:&format
+                              errorDescription:&errorDesc];
+            
+            if(rssSourcesData.count > 0){
+                NSDictionary* urlResponseHeaders = [urlResponse allHeaderFields];
+                
+                if(urlResponseHeaders.count>0){
+                    NSString* expires = [urlResponseHeaders objectForKey:@"Expires"];
+                    
+                    double expiresAsDouble = 60;
+                    if(expires)
+                        expiresAsDouble = expires.doubleValue;
+                    
+                    NSDate * expireDate = [NSDate dateWithTimeIntervalSinceNow:expiresAsDouble];
+                    
+                    if(expireDate){
+                        // persist the expireDate to userDefaults
+                        [userDefaults setObject:expireDate forKey:@"expireDateOfRssSources"];
+                    }
+                }
+                
+                // persist the rss sources to userDefaults
+                [userDefaults setObject:rssSourcesData forKey:@"rss_sources"];
+                [userDefaults synchronize];
+            }
+        }
+    }
+    // fallback to local plist file
+    if(!rssSourcesData){
+        rssSourcesData = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"rss_sources" ofType:@"plist"]];
+    }
+    
+    
+    return rssSourcesData;
+}
+
 @end
