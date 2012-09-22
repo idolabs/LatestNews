@@ -42,7 +42,19 @@
     self.sourcesTable.layer.borderColor = [UIColor darkGrayColor].CGColor;
 
     [self.view addGestureRecognizer:uiSwipeGestureRecognizer];
-    sourcesList = @[@"http://www.aa.com.tr",@"http://www.iha.com.tr",@"http://www.hurriyet.com.tr",@"http://www.ntvmsnbc.com",@"http://www.stargazete.com",@"http://www.haberturk.com",@"http://www.cnnturk.com",@"http://www.zaman.com.tr",@"http://www.trthaber.com",@"http://www.gazetevatan.com",@"http://www.sporx.com",@"http://www.magaxin.com"];
+    sourcesList = @[@"http://www.aa.com.tr",
+                    @"http://www.iha.com.tr",
+                    @"http://www.hurriyet.com.tr",
+                    @"http://www.ntvmsnbc.com",
+                    @"http://www.stargazete.com",
+                    @"http://www.haberturk.com",
+                    @"http://www.cnnturk.com",
+                    @"http://www.zaman.com.tr",
+                    @"http://www.trthaber.com",
+                    @"http://www.gazetevatan.com",
+                    @"http://www.sporx.com",
+                    @"http://www.mackolik.com",
+                    @"http://www.magaxin.com"];
 }
 
 - (void)viewDidUnload
