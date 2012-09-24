@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="272-BH-fcA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="272-BH-fcA">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Main Table View Controller - Mobil Haber-->
         <scene sceneID="51P-Ed-ZbX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1MJ-gC-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="F7f-eo-SnR" customClass="MainTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="P7f-0x-QSA">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -45,20 +44,19 @@
                         <segue destination="gbs-nh-Xws" kind="modal" identifier="infoCurlSegue" modalTransitionStyle="partialCurl" id="oQf-Uq-MmW"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1MJ-gC-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1266" y="62"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="FGU-k8-Prd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EEC-zn-shk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="gbs-nh-Xws" customClass="InfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VQF-VK-j2b">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="tasarım ve geliştirme:
-Bahaddin Yaşar &amp; İnanç Sevinç" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Y9w-eb-hBN">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="tasarım ve geliştirme: Bahaddin Yaşar &amp; İnanç Sevinç" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Y9w-eb-hBN">
                                 <rect key="frame" x="116" y="411" width="204" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="EuphemiaUCAS-Italic" family="Euphemia UCAS" pointSize="13"/>
@@ -82,13 +80,13 @@ Bahaddin Yaşar &amp; İnanç Sevinç" lineBreakMode="characterWrap" numberOfLin
                         <outlet property="sourcesTable" destination="OvF-21-QTe" id="KSF-wN-tGP"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EEC-zn-shk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1669" y="651"/>
         </scene>
         <!--News Item Web View Controller-->
         <scene sceneID="yIe-gC-TRU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TCZ-B2-iHA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="3Hw-gY-YDU" customClass="NewsItemWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6VW-uz-ygB">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -107,13 +105,13 @@ Bahaddin Yaşar &amp; İnanç Sevinç" lineBreakMode="characterWrap" numberOfLin
                         <outlet property="newsItemWebView" destination="nRd-C9-vY7" id="VQd-JL-Qyl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TCZ-B2-iHA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1669" y="62"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g4E-BZ-ds2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7i2-W4-ckA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="272-BH-fcA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
@@ -131,6 +129,7 @@ Bahaddin Yaşar &amp; İnanç Sevinç" lineBreakMode="characterWrap" numberOfLin
                         <segue destination="F7f-eo-SnR" kind="relationship" relationship="rootViewController" id="kXZ-Dy-nfD"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7i2-W4-ckA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="740" y="62"/>
         </scene>
