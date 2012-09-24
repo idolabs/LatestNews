@@ -58,13 +58,22 @@
     // highligt the info button for 1 sec
     [self infoButtonHighlighting:@"on"];
     
-    NSMutableDictionary* rssSourcesData = [self getRssSources];
-    NSArray* sortedRssSourcesKeys = [rssSourcesData.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-    
-    [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
-    [[AppDelegate getSharedContextInstance] setObject:sortedRssSourcesKeys forKey:SHARED_CONTEXT_KEY__SORTED_RSS_SOURCES_KEYS];
-
-    [self loadData];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        @autoreleasepool {
+            // getRssSources makes a sync network request, so call it in a background thread
+            NSMutableDictionary* rssSourcesData = [self getRssSources];
+            NSArray* sortedRssSourcesKeys = [rssSourcesData.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+            
+            [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
+            [[AppDelegate getSharedContextInstance] setObject:sortedRssSourcesKeys forKey:SHARED_CONTEXT_KEY__SORTED_RSS_SOURCES_KEYS];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @autoreleasepool {
+                    [self loadData];
+                }
+            });
+        }
+    });
 }
 
 -(void)infoButtonPressed:(UIButton*)sender {
@@ -87,21 +96,26 @@
 }
 
 -(void)loadData {
-
-    if([AppDelegate isInternetConnectionAvailable]) {
-        
+      if([AppDelegate isInternetConnectionAvailable]) {
         [self.navigationItem setRightBarButtonItem:self.loadingViewButton];
         [self.navigationController.navigationBar setNeedsDisplay];
-        [self performSelector:@selector(updateRefreshButtonActivityIndicator) withObject:nil afterDelay:1.0f];
+        [self performSelector:@selector(updateRefreshButtonActivityIndicator) withObject:nil afterDelay:2.0f];
        
-        NSMutableDictionary* rssSourcesData = [self getRssSources];
-        
-        [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
-        [self.tableView reloadData];
-       
+        // get rss sources in a background thread, then update ui in main thread(empty the main table), then make rss requests in background
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             @autoreleasepool {
-                [self sendAFRequest];
+                NSMutableDictionary* rssSourcesData = [self getRssSources];
+                [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    @autoreleasepool {
+                        [self.tableView reloadData];
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                            @autoreleasepool {
+                                [self sendAFRequest];
+                            }
+                        });
+                    }
+                });
             }
         });
     }
@@ -393,8 +407,10 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval: RSS_SOURCES_REQUEST_TIMEOUT_IN_SECONDS];
         
         NSHTTPURLResponse * urlResponse = nil;
+        // show network activity indicator while s3 call is in progress
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:nil];
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if(data && urlResponse && urlResponse.statusCode<300 && urlResponse.statusCode>=200 ){
             NSString *errorDesc = nil;
             NSPropertyListFormat format;
