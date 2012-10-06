@@ -17,4 +17,6 @@
 
 - (IBAction)refreshButtonAction:(id)sender;
 
+- (void) reloadData;
+
 @end

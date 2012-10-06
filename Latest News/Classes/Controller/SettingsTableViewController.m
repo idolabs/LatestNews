@@ -7,8 +7,13 @@
 //
 
 #import "SettingsTableViewController.h"
+#import "../AppConstants.h"
+#import "AppDelegate.h"
+#import "MainTableViewController.h"
 
 @interface SettingsTableViewController ()
+
+@property (strong,nonatomic) NSString* dirtyFlagForCategories;
 
 @end
 
@@ -27,7 +32,7 @@
 {
     [super viewDidLoad];
 
-    self.contentSizeForViewInPopover = CGSizeMake(150.0, 140.0);
+    self.contentSizeForViewInPopover = CGSizeMake(200.0, 300.0);
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -44,6 +49,35 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"popover opened");
+    NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
+    self.dirtyFlagForCategories = @"";
+    for (NSDictionary* dict in categories) {
+        _dirtyFlagForCategories = [_dirtyFlagForCategories stringByAppendingString:[dict objectForKey:@"category_selected"] ];
+    }
+    NSLog(@"dirtyFlag: %@",_dirtyFlagForCategories);
+    
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"popover closed");
+    NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
+    NSString* dirtyFlagToCompare = @"";
+    for (NSDictionary* dict in categories) {
+        dirtyFlagToCompare = [dirtyFlagToCompare stringByAppendingString:[dict objectForKey:@"category_selected"] ];
+    }
+    if( ! [_dirtyFlagForCategories isEqualToString:dirtyFlagToCompare] ){
+        AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        MainTableViewController* mainTableViewController = (MainTableViewController*)[appDelegate.sharedContext objectForKey: [SHARED_CONTEXT_KEY__VIEW_CONTROLLERS_PREFIX stringByAppendingString: NSStringFromClass([MainTableViewController class])]];
+        [mainTableViewController reloadData];
+        NSLog(@"reload called");
+    }
+    
+          
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -53,12 +87,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return ((NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES]).count;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,7 +101,24 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    NSArray* categoryDataArray = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
+
+    cell.textLabel.text = [[categoryDataArray objectAtIndex:indexPath.row] objectForKey:@"category_label"];
+    
+    BOOL selected = [[[categoryDataArray objectAtIndex:indexPath.row] objectForKey:@"category_selected"] isEqualToString:@"YES"];
+    
+    if(selected) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.textLabel.textColor = [UIColor blackColor];
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.textColor = [UIColor grayColor];
+    }
+    
     
     return cell;
 }
@@ -121,6 +173,15 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    NSArray* categoryDataArray = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
+    
+//    NSLog(@"selected %@", [[categoryDataArray objectAtIndex:indexPath.row] objectForKey:@"category_selected"] );
+    BOOL selected = [[[categoryDataArray objectAtIndex:indexPath.row] objectForKey:@"category_selected"] isEqualToString:@"YES"];
+    NSString* selectedValue = selected ? @"NO" : @"YES";
+
+    [[categoryDataArray objectAtIndex:indexPath.row] setValue:selectedValue forKey:@"category_selected"];
+//     NSLog(@"selected2 %@", [[categoryDataArray objectAtIndex:indexPath.row] objectForKey:@"category_selected"] );
+    [self.tableView reloadData];
 }
 
 @end

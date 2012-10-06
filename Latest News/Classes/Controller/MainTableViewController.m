@@ -70,11 +70,25 @@
             NSMutableDictionary* rssSourcesData = [applicationSettings objectForKey:@"rss_sources"];
             NSArray* sortedRssSourcesKeys = [rssSourcesData.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
             
-            NSArray* categories = [applicationSettings objectForKey:@"categories"];
+            
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            NSArray* categories = [userDefaults objectForKey:USERDEFAULTS_KEY__CATEGORIES];
+            if(categories.count<1) {
+                categories = [applicationSettings objectForKey:@"categories"];
+                [userDefaults setObject:categories forKey:USERDEFAULTS_KEY__CATEGORIES];
+                [userDefaults synchronize];
+            }
+
+            NSMutableArray* categoriesMutable = [[NSMutableArray alloc]init];
+            for (NSDictionary* dict in categories) {
+                [categoriesMutable addObject:[dict mutableCopy]];
+            }
 
             [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
             [[AppDelegate getSharedContextInstance] setObject:sortedRssSourcesKeys forKey:SHARED_CONTEXT_KEY__SORTED_RSS_SOURCES_KEYS];
-            [[AppDelegate getSharedContextInstance] setObject:categories forKey:SHARED_CONTEXT_KEY__CATEGORIES];
+            
+            [[AppDelegate getSharedContextInstance] setObject:categoriesMutable forKey:SHARED_CONTEXT_KEY__CATEGORIES];
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 @autoreleasepool {
@@ -102,6 +116,15 @@
     if(motion==UIEventSubtypeMotionShake) {
         [self loadData];
     }
+}
+
+-(void)reloadData {
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
+    [userDefaults setObject:categories forKey:USERDEFAULTS_KEY__CATEGORIES];
+    [userDefaults synchronize];
+    // TODO: push to icloud 
+    [self loadData];
 }
 
 -(void)loadData {
@@ -210,28 +233,37 @@
 {
     NSMutableDictionary* rssSourcesData = [[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
     [AFGDataXMLRequestOperation addAcceptableContentTypes: [NSSet setWithObjects:@"application/rss+xml", nil]];
-    
+    NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
+    NSMutableDictionary* selectedCategoryKeys = [[NSMutableDictionary alloc] init];
+    for (NSDictionary* dict in categories) {
+        if( [[dict objectForKey:@"category_selected"] isEqualToString:@"YES"] )
+            [selectedCategoryKeys setObject:@"YES" forKey:[dict objectForKey:@"category_key"]];
+    }
+
     for (NSString* theKey in [rssSourcesData allKeys]) {
         
-        NSURL *url = [NSURL URLWithString:[[rssSourcesData objectForKey:theKey] objectForKey:@"url"] ];
-        NSURLRequest *initialRequest = [NSURLRequest requestWithURL:url];
-        
-        AFGDataXMLRequestOperation *oper = [AFGDataXMLRequestOperation XMLDocumentRequestOperationWithRequest:initialRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, GDataXMLDocument *XMLDocument) {
-            @autoreleasepool {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                    @autoreleasepool {
-                        [self parseDataInBackground:XMLDocument forKey:theKey];
-                    }
-                });
-            }
+        if([selectedCategoryKeys objectForKey:[[rssSourcesData objectForKey:theKey] objectForKey:@"category_key"]] ) {
             
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, GDataXMLDocument *XMLDocument) {
-            @autoreleasepool {
-                NSLog(@"failure handler: %@",theKey);
-            }
-        }];
-        
-        [oper start];
+            NSURL *url = [NSURL URLWithString:[[rssSourcesData objectForKey:theKey] objectForKey:@"url"] ];
+            NSURLRequest *initialRequest = [NSURLRequest requestWithURL:url];
+            
+            AFGDataXMLRequestOperation *oper = [AFGDataXMLRequestOperation XMLDocumentRequestOperationWithRequest:initialRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, GDataXMLDocument *XMLDocument) {
+                @autoreleasepool {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        @autoreleasepool {
+                            [self parseDataInBackground:XMLDocument forKey:theKey];
+                        }
+                    });
+                }
+                
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, GDataXMLDocument *XMLDocument) {
+                @autoreleasepool {
+                    NSLog(@"failure handler: %@",theKey);
+                }
+            }];
+            
+            [oper start];
+        }
     }
 }
 
@@ -461,6 +493,7 @@
     // fallback to local plist file
     if(!applicationSettings){
         applicationSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"app_settings" ofType:@"plist"]];
+        
     }
     
     
