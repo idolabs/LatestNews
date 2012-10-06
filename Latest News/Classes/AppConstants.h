@@ -27,6 +27,7 @@
 #define SHARED_CONTEXT_KEY_ALL_NEWS_DATA                                    @"ALL_NEWS_DATA"
 #define SHARED_CONTEXT_KEY__SORTED_RSS_SOURCES_KEYS                         @"SORTED_RSS_SOURCES_KEYS"
 #define SHARED_CONTEXT_KEY_SELECTED_NEWS_ITEM                               @"SELECTED_NEWS_ITEM"
+#define SHARED_CONTEXT_KEY__CATEGORIES                                      @"CATEGORIES"
 #define SHARED_CONTEXT_KEY__VIEW_CONTROLLERS_PREFIX                         @"VIEW_CONTROLLERS_PREFIX__"
 
 
@@ -47,7 +48,7 @@
 #define MAIN_TABLE_CELL__NEWS_ITEMS_TABLE_BACKGROUND_COLOR     [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.2]
 #define MAIN_TABLE_CELL__NEWS_ITEMS_TABLE_ROTATION  ROTATION_DEGREE_90_CCW
 
-#define RSS_SOURCES_PLIST_URL                       @"https://s3-eu-west-1.amazonaws.com/idolabs/rss_sources.plist"
+#define RSS_SOURCES_PLIST_URL                       @"https://s3-eu-west-1.amazonaws.com/idolabs/app_settings.plist"
 #define RSS_SOURCES_REQUEST_TIMEOUT_IN_SECONDS      1
 #define RSS_SOURCES_DEFAULT_RESPONSE_HEADER_EXPIRES 60
 

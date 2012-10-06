@@ -57,16 +57,25 @@
     self.infoButton.autoresizingMask = ( UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin);
     // highligt the info button for 1 sec
     [self infoButtonHighlighting:@"on"];
-    
+
+    // set settings button title to show cogwheel image
+    [[[self navigationItem] leftBarButtonItem] setTitle:@"\u2699"];
+    [[[self navigationItem] leftBarButtonItem] setTitleTextAttributes:@{UITextAttributeFont : [UIFont fontWithName:@"Helvetica" size:22.0]} forState:UIControlStateNormal];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         @autoreleasepool {
             // getRssSources makes a sync network request, so call it in a background thread
-            NSMutableDictionary* rssSourcesData = [self getRssSources];
+            NSMutableDictionary* applicationSettings = [self getApplicationSettings];
+            
+            NSMutableDictionary* rssSourcesData = [applicationSettings objectForKey:@"rss_sources"];
             NSArray* sortedRssSourcesKeys = [rssSourcesData.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
             
+            NSArray* categories = [applicationSettings objectForKey:@"categories"];
+
             [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
             [[AppDelegate getSharedContextInstance] setObject:sortedRssSourcesKeys forKey:SHARED_CONTEXT_KEY__SORTED_RSS_SOURCES_KEYS];
-            
+            [[AppDelegate getSharedContextInstance] setObject:categories forKey:SHARED_CONTEXT_KEY__CATEGORIES];
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 @autoreleasepool {
                     [self loadData];
@@ -104,7 +113,7 @@
         // get rss sources in a background thread, then update ui in main thread(empty the main table), then make rss requests in background
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             @autoreleasepool {
-                NSMutableDictionary* rssSourcesData = [self getRssSources];
+                NSMutableDictionary* rssSourcesData = [[self getApplicationSettings] objectForKey: @"rss_sources"];
                 [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     @autoreleasepool {
@@ -189,9 +198,10 @@
     }
 }
 
+//TODO: one inner
 -(void) setFilteredRssSourcesData {
     
-    NSMutableDictionary* rssSourcesData = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"rss_sources" ofType:@"plist"]];
+    NSMutableDictionary* rssSourcesData = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"app_settings" ofType:@"plist"]];
     [[AppDelegate getSharedContextInstance] setObject:rssSourcesData forKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
 
 }
@@ -387,8 +397,8 @@
 }
 
 
--(NSMutableDictionary*) getRssSources{
-    NSMutableDictionary* rssSourcesData = nil;
+-(NSMutableDictionary*) getApplicationSettings{
+    NSMutableDictionary* applicationSettings = nil;
 
     //Firstly, look userDefaults for rss sources
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
@@ -398,10 +408,10 @@
     
     if (rssSourcesImmutable && expireDateOfRssSources &&
         ([expireDateOfRssSources compare:[NSDate date]] == NSOrderedDescending)) {
-        rssSourcesData = (__bridge NSMutableDictionary *)(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (__bridge CFPropertyListRef)(rssSourcesImmutable), kCFPropertyListMutableContainersAndLeaves));
+        applicationSettings = (__bridge NSMutableDictionary *)(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (__bridge CFPropertyListRef)(rssSourcesImmutable), kCFPropertyListMutableContainersAndLeaves));
     }
     
-    if (!rssSourcesData) {
+    if (!applicationSettings) {
         // retrieve rss sources from s3
         NSURL *url = [NSURL URLWithString:RSS_SOURCES_PLIST_URL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval: RSS_SOURCES_REQUEST_TIMEOUT_IN_SECONDS];
@@ -415,13 +425,13 @@
             NSString *errorDesc = nil;
             NSPropertyListFormat format;
             
-            rssSourcesData = [NSPropertyListSerialization
+            applicationSettings = [NSPropertyListSerialization
                               propertyListFromData:data
                               mutabilityOption:NSPropertyListMutableContainersAndLeaves
                               format:&format
                               errorDescription:&errorDesc];
             
-            if(rssSourcesData.count > 0){
+            if(applicationSettings.count > 0){
                 NSDictionary* urlResponseHeaders = [urlResponse allHeaderFields];
                 
                 if(urlResponseHeaders.count>0){
@@ -440,18 +450,21 @@
                 }
                 
                 // persist the rss sources to userDefaults
-                [userDefaults setObject:rssSourcesData forKey:USERDEFAULTS_KEY__RSS_SOURCES];
+                [userDefaults setObject:applicationSettings forKey:USERDEFAULTS_KEY__RSS_SOURCES];
                 [userDefaults synchronize];
             }
         }
+        else{
+            NSLog(@"URL: %@, Status: %d", RSS_SOURCES_PLIST_URL, urlResponse.statusCode);
+        }
     }
     // fallback to local plist file
-    if(!rssSourcesData){
-        rssSourcesData = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"rss_sources" ofType:@"plist"]];
+    if(!applicationSettings){
+        applicationSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"app_settings" ofType:@"plist"]];
     }
     
     
-    return rssSourcesData;
+    return applicationSettings;
 }
 
 @end
