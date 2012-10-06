@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="272-BH-fcA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="272-BH-fcA">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
         <!--Main Table View Controller - Mobil Haber-->
@@ -32,6 +32,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Mobil Haber" id="JsR-aD-pVM">
                         <barButtonItem key="backBarButtonItem" title="Geri" id="ZXe-iH-0Km"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="cx0-d1-RNj"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="f8r-Tx-4tt">
                             <connections>
                                 <action selector="refreshButtonAction:" destination="F7f-eo-SnR" id="2eh-qQ-bGh"/>
