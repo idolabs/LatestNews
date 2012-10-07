@@ -81,6 +81,16 @@
     return YES;
 }
 
++ (BOOL) isICloudEnabled {
+    
+    NSURL *ubiq = [[NSFileManager defaultManager]
+                   URLForUbiquityContainerIdentifier:nil];
+    if (ubiq) {
+        return YES;
+    }
+    return NO;
+}
+
 
 
 @end

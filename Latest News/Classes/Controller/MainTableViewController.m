@@ -34,6 +34,8 @@
 {
     [super viewDidLoad];
     
+    NSLog(@" iCloud enabled: %i", [AppDelegate isICloudEnabled] );
+    
     // let AFNetworking manage the status bar Network Activity Indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
