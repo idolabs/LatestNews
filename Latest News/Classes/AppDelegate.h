@@ -20,6 +20,6 @@
 +(NSMutableDictionary*)getSharedContextInstance;
 
 + (BOOL) isInternetConnectionAvailable;
-+ (BOOL) isICloudEnabled;
++ (BOOL) iCloudIsEnabled;
 
 @end

@@ -34,7 +34,19 @@
 {
     [super viewDidLoad];
     
-    NSLog(@" iCloud enabled: %i", [AppDelegate isICloudEnabled] );
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(updateFromiCloud:)
+    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
+    object:nil];
+    
+    if( [AppDelegate iCloudIsEnabled] ) {
+        [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+        NSArray* categoriesFromiCloud = [[NSUbiquitousKeyValueStore defaultStore] objectForKey:ICLOUD_KEY__CATEGORIES];
+
+        NSLog(@"icloud sync complete");
+         NSLog(@"icloud dict representation: %@",[[NSUbiquitousKeyValueStore defaultStore] dictionaryRepresentation] );
+    }
+
     
     // let AFNetworking manage the status bar Network Activity Indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
@@ -104,6 +116,11 @@
     });
 }
 
+-(void) updateFromiCloud:(NSNotification*) notificationObject {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Hello iCloud!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
 -(void)infoButtonPressed:(UIButton*)sender {
     [self performSegueWithIdentifier:@"infoCurlSegue" sender:sender];
 }
@@ -128,7 +145,16 @@
     NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
     [userDefaults setObject:categories forKey:USERDEFAULTS_KEY__CATEGORIES];
     [userDefaults synchronize];
-    // TODO: push to icloud 
+    // push to icloud
+    if( [AppDelegate iCloudIsEnabled] ) {
+        [[NSUbiquitousKeyValueStore defaultStore] setObject:categories forKey:ICLOUD_KEY__CATEGORIES];
+        [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+        
+        NSLog(@"icloud sync complete");
+        NSLog(@"icloud dict representation: %@",[[NSUbiquitousKeyValueStore defaultStore] dictionaryRepresentation] );
+
+    }
+    
     [self loadData];
 }
 
