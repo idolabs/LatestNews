@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="uOB-6d-AOI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="uOB-6d-AOI">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Main Table View Controller - Mobil Haber-->
         <scene sceneID="wdT-xg-MBe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DiN-a8-3WP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="ZMa-ZR-MZz" customClass="MainTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="87V-S9-4nG">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
@@ -36,9 +35,7 @@
                         <barButtonItem key="backBarButtonItem" title="Geri" id="XNe-jZ-GsP"/>
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="0mL-VG-NzY">
                             <connections>
-                                <segue destination="XS2-Wq-4BE" kind="popover" popoverAnchorBarButtonItem="0mL-VG-NzY" id="2ev-nB-0kr">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="settingsButtonAction:" destination="ZMa-ZR-MZz" id="hCO-Qa-9Kr"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="cGp-3P-7Ec">
@@ -51,18 +48,21 @@
                         <outlet property="refreshButton" destination="cGp-3P-7Ec" id="7Z1-XW-nTs"/>
                         <segue destination="YCO-NZ-zie" kind="push" identifier="SEGUE__NEWS_ITEM_WEB_VIEW" id="hxP-5d-Z5b"/>
                         <segue destination="qPy-Wk-18W" kind="modal" identifier="infoCurlSegue" modalTransitionStyle="partialCurl" id="XO7-0G-VtY"/>
+                        <segue destination="XS2-Wq-4BE" kind="popover" identifier="settingsPopoverSegue" popoverAnchorBarButtonItem="0mL-VG-NzY" id="D7H-zb-h4H">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DiN-a8-3WP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="683" y="-673"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="xxq-bC-Jil">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5dz-tY-uZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="XS2-Wq-4BE" customClass="SettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1ey-aH-EFJ">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -82,13 +82,13 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5dz-tY-uZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1617" y="-1849"/>
         </scene>
         <!--News Item Web View Controller-->
         <scene sceneID="NhT-h1-WNk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sNx-bM-htK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YCO-NZ-zie" customClass="NewsItemWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bCP-OS-hOj">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
@@ -108,13 +108,13 @@
                         <outlet property="newsItemWebView" destination="YBk-f4-PhR" id="2vm-yC-k38"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sNx-bM-htK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1617" y="-673"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="KRE-bi-Kvz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uTM-gi-1Zv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="qPy-Wk-18W" customClass="InfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cuw-t5-mWo">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
@@ -144,13 +144,13 @@
                         <outlet property="sourcesTable" destination="NXC-mo-OFO" id="L92-X3-vaq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uTM-gi-1Zv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1617" y="525"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iJL-LF-xcD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pH9-cO-KlY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="uOB-6d-AOI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
@@ -164,6 +164,7 @@
                         <segue destination="ZMa-ZR-MZz" kind="relationship" relationship="rootViewController" id="JXZ-es-l1D"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pH9-cO-KlY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-291" y="-673"/>
         </scene>
@@ -182,6 +183,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="refreshButtonAction:"/>
+                <relationship kind="action" name="settingsButtonAction:"/>
                 <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
