@@ -14,6 +14,7 @@
 @property (strong, nonatomic) UIButton *infoButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 
+- (IBAction)settingsButtonAction:(id)sender;
 
 - (IBAction)refreshButtonAction:(id)sender;
 

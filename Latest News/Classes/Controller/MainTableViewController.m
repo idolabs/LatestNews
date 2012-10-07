@@ -11,6 +11,7 @@
 #import "../AppConstants.h"
 #import "NewsItem.h"
 #import "AppDelegate.h"
+#import "SettingsTableViewController.h"
 #import "../../Libraries/AFNetworking/AFXMLRequestOperation.h"
 #import "../../Libraries/AFNetworking/AFHTTPRequestOperation.h"
 #import "../../Libraries/AFNetworking/AFGDataXMLRequestOperation.h"
@@ -18,7 +19,9 @@
 #import <QuartzCore/CAGradientLayer.h>
 #import <dispatch/dispatch.h>
 
-@interface MainTableViewController()
+@interface MainTableViewController() {
+    __weak UIPopoverController *_settingsPopover;
+}
 
 @property (strong, nonatomic) UIBarButtonItem *loadingViewButton;
 
@@ -429,6 +432,7 @@
 }
 
 
+
 -(NSMutableDictionary*) getApplicationSettings{
     NSMutableDictionary* applicationSettings = nil;
 
@@ -499,5 +503,20 @@
     
     return applicationSettings;
 }
+// implemented to assign popover ivar
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue isKindOfClass:[UIStoryboardPopoverSegue class]]){
+        _settingsPopover = [(UIStoryboardPopoverSegue*)segue popoverController];
+    }
+}
 
+// toggle the settings popover
+- (IBAction)settingsButtonAction:(id)sender {
+    
+    if(_settingsPopover )
+        [_settingsPopover dismissPopoverAnimated:YES];
+    else {
+        [self performSegueWithIdentifier:@"settingsPopoverSegue" sender:sender];
+    }
+}
 @end
