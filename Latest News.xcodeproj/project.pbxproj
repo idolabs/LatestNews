@@ -92,6 +92,7 @@
 /* Begin PBXFileReference section */
 		00246D7F16207D550071F473 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		00246D8016207D550071F473 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		00246D91162198B00071F473 /* Latest News.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Latest News.entitlements"; sourceTree = "<group>"; };
 		00BB0A651605D3F20035E61D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		00BB0A671605D4BE0035E61D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		230766EC15FB90B100667093 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -255,6 +256,7 @@
 		23C5E79115F253FB008DACFA /* Latest News */ = {
 			isa = PBXGroup;
 			children = (
+				00246D91162198B00071F473 /* Latest News.entitlements */,
 				23C5E7CB15F26A75008DACFA /* Libraries */,
 				23C5E7B315F267E3008DACFA /* Resources */,
 				23C5E7A915F2607F008DACFA /* Classes */,
@@ -649,6 +651,7 @@
 		23C5E7A015F253FB008DACFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Latest News/Latest News.entitlements";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Latest News/Latest News-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -666,6 +669,7 @@
 		23C5E7A115F253FB008DACFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Latest News/Latest News.entitlements";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Latest News/Latest News-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
