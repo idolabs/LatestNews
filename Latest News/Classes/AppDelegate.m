@@ -81,15 +81,4 @@
     return YES;
 }
 
-+ (BOOL) iCloudIsEnabled {
-    // TODO:  use [[NSFileManager defaultManager] ubiquityIdentityToken] after IOS 6 support
-    id urlForUbiquityContainerIdentifier =[[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil ];
-    if (urlForUbiquityContainerIdentifier) {
-        return YES;
-    }
-    return NO;
-}
-
-
-
 @end
