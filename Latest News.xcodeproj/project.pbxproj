@@ -56,6 +56,7 @@
 		23C5E84415F29B8C008DACFA /* NewsItemWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C5E84315F29B8C008DACFA /* NewsItemWebViewController.m */; };
 		23C5E84615F36B23008DACFA /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23C5E84515F36B23008DACFA /* MainStoryboard_iPhone.storyboard */; };
 		23C5E84815F36B46008DACFA /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23C5E84715F36B46008DACFA /* MainStoryboard_iPad.storyboard */; };
+		F0A9AE5B16DF8C8A0030ECF0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A9AE5A16DF8C8A0030ECF0 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +186,7 @@
 		23C5E84315F29B8C008DACFA /* NewsItemWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItemWebViewController.m; sourceTree = "<group>"; };
 		23C5E84515F36B23008DACFA /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		23C5E84715F36B46008DACFA /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		F0A9AE5A16DF8C8A0030ECF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +344,7 @@
 				230767201604BEB800667093 /* Default-Portrait@2x~ipad.png */,
 				2307671D1604B70600667093 /* Default.png */,
 				2307671B1604B5E700667093 /* Default@2x.png */,
+				F0A9AE5A16DF8C8A0030ECF0 /* Default-568h@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				2307672A1604C10C00667093 /* Default-Landscape~ipad.png in Resources */,
 				00BB0A661605D3F20035E61D /* README.md in Resources */,
 				00BB0A681605D4BE0035E61D /* .gitignore in Resources */,
+				F0A9AE5B16DF8C8A0030ECF0 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +653,8 @@
 		23C5E7A015F253FB008DACFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Latest News/Latest News-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -659,6 +665,8 @@
 				INFOPLIST_FILE = "Latest News/Latest News-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -666,6 +674,8 @@
 		23C5E7A115F253FB008DACFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Latest News/Latest News-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -676,6 +686,8 @@
 				INFOPLIST_FILE = "Latest News/Latest News-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
