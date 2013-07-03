@@ -63,7 +63,25 @@
 	</array>
 	<key>rss_sources</key>
 	<dict>
-		<key>1__gundem__01__aa_guncel</key>
+		<key>1__gundem__01__sozcu_guncel</key>
+		<dict>
+			<key>url</key>
+			<string>http://sozcu.com.tr/rss.php</string>
+			<key>name</key>
+			<string>Sözcü</string>
+			<key>category_key</key>
+			<string>gundem</string>
+		</dict>
+		<key>1__gundem__02__posta_haber_hatti</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.posta.com.tr/xml/rss/rss_1_0.xml</string>
+			<key>name</key>
+			<string>Posta</string>
+			<key>category_key</key>
+			<string>gundem</string>
+		</dict>
+		<key>1__gundem__03__aa_guncel</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.aa.com.tr/rss/ajansguncel.xml</string>
@@ -72,7 +90,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__02__iha_gundem</key>
+		<key>1__gundem__04__iha_gundem</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.iha.com.tr/rss.aspx?cid=8</string>
@@ -81,7 +99,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__03__ntvmsnbc_anasayfa</key>
+		<key>1__gundem__05__ntvmsnbc_anasayfa</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.ntvmsnbc.com/id/3032091/device/rss/rss.xml</string>
@@ -90,7 +108,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__04__hurriyet_anasayfa</key>
+		<key>1__gundem__06__hurriyet_anasayfa</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.hurriyet.com.tr/rss.aspx?sectionId=1</string>
@@ -99,7 +117,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__05__star_son_dakika</key>
+		<key>1__gundem__07__star_son_dakika</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.stargazete.com/rss/sondakika.xml</string>
@@ -108,7 +126,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__06__haberturk_anasayfa</key>
+		<key>1__gundem__08__haberturk_anasayfa</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.haberturk.com/rss</string>
@@ -117,7 +135,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__07__cnnturk_gundem</key>
+		<key>1__gundem__09__cnnturk_gundem</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/guncel.xml</string>
@@ -126,7 +144,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__08__zaman_anasayfa</key>
+		<key>1__gundem__10__zaman_anasayfa</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.zaman.com.tr/anasayfa.rss</string>
@@ -135,7 +153,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__09__trt_haber_haberler</key>
+		<key>1__gundem__11__trt_haber_haberler</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.trthaber.com/manset.rss</string>
@@ -144,7 +162,7 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__10__vatan_gundem</key>
+		<key>1__gundem__12__vatan_gundem</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.gazetevatan.com/rss/gundem.xml</string>
@@ -153,7 +171,16 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__11__cnnturk_ekonomi</key>
+		<key>1__gundem__13__posta_ekonomi</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.posta.com.tr/xml/rss/rss_8_0.xml</string>
+			<key>name</key>
+			<string>Posta Ekonomi</string>
+			<key>category_key</key>
+			<string>ekonomi</string>
+		</dict>
+		<key>1__gundem__14__cnnturk_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/ekonomi.xml</string>
@@ -162,7 +189,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__12__star_ekonomi</key>
+		<key>1__gundem__15__star_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.stargazete.com/rss/ekonomi.xml</string>
@@ -171,7 +198,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__14__ntvmsnbc_ekonomi</key>
+		<key>1__gundem__16__ntvmsnbc_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.ntvmsnbc.com/id/24927361/device/rss/rss.xml</string>
@@ -180,7 +207,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__15__hurriyet_ekonomi</key>
+		<key>1__gundem__17__hurriyet_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.hurriyet.com.tr/rss.aspx?sectionId=4</string>
@@ -189,7 +216,16 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>2__spor__1__mackolik</key>
+		<key>2__spor__1__posta_spor</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.posta.com.tr/xml/rss/rss_7_0.xml</string>
+			<key>name</key>
+			<string>Posta Spor</string>
+			<key>category_key</key>
+			<string>spor</string>
+		</dict>
+		<key>2__spor__2__mackolik</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.mackolik.com/Rss</string>
@@ -198,7 +234,7 @@
 			<key>category_key</key>
 			<string>spor</string>
 		</dict>
-		<key>2__spor__2__cnnturk_spor</key>
+		<key>2__spor__3__cnnturk_spor</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/spor.xml</string>
@@ -207,7 +243,7 @@
 			<key>category_key</key>
 			<string>spor</string>
 		</dict>
-		<key>2__spor__3__hurriyet_spor</key>
+		<key>2__spor__4__hurriyet_spor</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.hurriyet.com.tr/rss.aspx?sectionId=14</string>
@@ -216,7 +252,7 @@
 			<key>category_key</key>
 			<string>spor</string>
 		</dict>
-		<key>2__spor__4__vatan_spor</key>
+		<key>2__spor__5__vatan_spor</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.gazetevatan.com/rss/spor.xml</string>
@@ -225,7 +261,7 @@
 			<key>category_key</key>
 			<string>spor</string>
 		</dict>
-		<key>2__spor__5__sporx_son_haberler</key>
+		<key>2__spor__6__sporx_son_haberler</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.sporx.com/_xml/rss.php</string>
@@ -234,7 +270,16 @@
 			<key>category_key</key>
 			<string>spor</string>
 		</dict>
-		<key>3__teknoloji__1__ntvmsnbc_teknoloji</key>
+		<key>3__teknoloji__1__posta_teknoloji</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.posta.com.tr/xml/rss/rss_269_0.xml</string>
+			<key>name</key>
+			<string>Posta Teknoloji</string>
+			<key>category_key</key>
+			<string>teknoloji</string>
+		</dict>
+		<key>3__teknoloji__2__ntvmsnbc_teknoloji</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.ntvmsnbc.com/id/24927532/device/rss/rss.xml</string>
@@ -243,7 +288,7 @@
 			<key>category_key</key>
 			<string>teknoloji</string>
 		</dict>
-		<key>3__teknoloji__2__cnnturk_teknoloji</key>
+		<key>3__teknoloji__3__cnnturk_teknoloji</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/bilim.teknoloji.xml</string>
@@ -252,7 +297,7 @@
 			<key>category_key</key>
 			<string>teknoloji</string>
 		</dict>
-		<key>3__teknoloji__2__vatan_teknoloji</key>
+		<key>3__teknoloji__4__vatan_teknoloji</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.gazetevatan.com/rss/teknoloji.xml</string>
@@ -261,7 +306,7 @@
 			<key>category_key</key>
 			<string>teknoloji</string>
 		</dict>
-		<key>4__saglik__2__cnnturk_kultur_sanat</key>
+		<key>4__saglik__1__cnnturk_kultur_sanat</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/kultur.sanat.xml</string>
@@ -270,7 +315,16 @@
 			<key>category_key</key>
 			<string>kultur_sanat</string>
 		</dict>
-		<key>4__saglik__3__ntvmsnbc_saglik</key>
+		<key>5__saglik__1__posta_saglik</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.posta.com.tr/xml/rss/rss_9_0.xml</string>
+			<key>name</key>
+			<string>Posta Sağlık</string>
+			<key>category_key</key>
+			<string>saglik</string>
+		</dict>
+		<key>5__saglik__2__ntvmsnbc_saglik</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.ntvmsnbc.com/id/24928008/device/rss/rss.xml</string>
@@ -279,7 +333,7 @@
 			<key>category_key</key>
 			<string>saglik</string>
 		</dict>
-		<key>4__saglik__4__cnnturk_saglik</key>
+		<key>5__saglik__3__cnnturk_saglik</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/saglik.xml</string>
@@ -288,7 +342,7 @@
 			<key>category_key</key>
 			<string>saglik</string>
 		</dict>
-		<key>4__saglik__5__hurriyet_saglik</key>
+		<key>5__saglik__4__hurriyet_saglik</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.hurriyet.com.tr/rss.aspx?sectionId=2208</string>
@@ -297,7 +351,7 @@
 			<key>category_key</key>
 			<string>saglik</string>
 		</dict>
-		<key>4__saglik__6__star_saglik</key>
+		<key>5__saglik__5__star_saglik</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.stargazete.com/rss/saglik.xml</string>
@@ -306,7 +360,16 @@
 			<key>category_key</key>
 			<string>saglik</string>
 		</dict>
-		<key>5__magazin__1__star_magazin</key>
+		<key>6__magazin__1__posta_magazin</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.posta.com.tr/xml/rss/rss_6_0.xml</string>
+			<key>name</key>
+			<string>Posta Magazin</string>
+			<key>category_key</key>
+			<string>magazin</string>
+		</dict>
+		<key>6__magazin__2__star_magazin</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.stargazete.com/rss/magazin.xml</string>
@@ -315,7 +378,7 @@
 			<key>category_key</key>
 			<string>magazin</string>
 		</dict>
-		<key>5__magazin__2__hurriyet_magazin</key>
+		<key>6__magazin__3__hurriyet_magazin</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.hurriyet.com.tr/rss.aspx?sectionId=2035</string>
@@ -324,7 +387,7 @@
 			<key>category_key</key>
 			<string>magazin</string>
 		</dict>
-		<key>5__magazin__3__vatan_magazin</key>
+		<key>6__magazin__4__vatan_magazin</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.gazetevatan.com/rss/magazin.xml</string>
@@ -333,7 +396,7 @@
 			<key>category_key</key>
 			<string>magazin</string>
 		</dict>
-		<key>5__magazin__4__magaxin_turkiyeden</key>
+		<key>6__magazin__5__magaxin_turkiyeden</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.magaxin.com/feed.php?type=rss&amp;search_cid=13</string>
@@ -342,7 +405,7 @@
 			<key>category_key</key>
 			<string>magazin</string>
 		</dict>
-		<key>5__magazin__5__magaxin_dunyadan</key>
+		<key>6__magazin__6__magaxin_dunyadan</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.magaxin.com/feed.php?type=rss&amp;search_cid=10</string>
@@ -351,7 +414,7 @@
 			<key>category_key</key>
 			<string>magazin</string>
 		</dict>
-		<key>5__magazin__6__magaxin_sinema_tv</key>
+		<key>6__magazin__7__magaxin_sinema_tv</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.magaxin.com/feed.php?type=rss&amp;search_cid=6</string>
@@ -360,7 +423,7 @@
 			<key>category_key</key>
 			<string>magazin</string>
 		</dict>
-		<key>5__magazin__7__magaxin_muzik_magazin</key>
+		<key>6__magazin__8__magaxin_muzik_magazin</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.magaxin.com/feed.php?type=rss&amp;search_cid=11</string>
