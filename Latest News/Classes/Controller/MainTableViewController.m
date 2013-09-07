@@ -337,9 +337,6 @@
                     }
                 }
             }
-            
-            if(!(imageUrl.length>0))
-                continue;
 
             [newsItems addObject:[[NewsItem alloc] initWithTitle:title andContentUrl:link andImageUrl:imageUrl]];
         }
@@ -438,75 +435,10 @@
 
 
 -(NSMutableDictionary*) getApplicationSettings{
-    NSMutableDictionary* applicationSettings = nil;
-
-    //Firstly, look userDefaults for rss sources
-    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-
-    NSDictionary* rssSourcesImmutable = [userDefaults objectForKey:USERDEFAULTS_KEY__RSS_SOURCES];
-    NSDate* expireDateOfRssSources = [userDefaults objectForKey:USERDEFAULTS_KEY__RSS_SOURCES_EXPIRE_DATE];
-    
-    if (rssSourcesImmutable && expireDateOfRssSources &&
-        ([expireDateOfRssSources compare:[NSDate date]] == NSOrderedDescending)) {
-        applicationSettings = (__bridge NSMutableDictionary *)(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (__bridge CFPropertyListRef)(rssSourcesImmutable), kCFPropertyListMutableContainersAndLeaves));
-    }
-    
-    if (!applicationSettings) {
-        // retrieve rss sources from s3
-        NSURL *url = [NSURL URLWithString:RSS_SOURCES_PLIST_URL];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval: RSS_SOURCES_REQUEST_TIMEOUT_IN_SECONDS];
-        
-        NSHTTPURLResponse * urlResponse = nil;
-        // show network activity indicator while s3 call is in progress
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:nil];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        if(data && urlResponse && urlResponse.statusCode<300 && urlResponse.statusCode>=200 ){
-            NSString *errorDesc = nil;
-            NSPropertyListFormat format;
-            
-            applicationSettings = [NSPropertyListSerialization
-                              propertyListFromData:data
-                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                              format:&format
-                              errorDescription:&errorDesc];
-            
-            if(applicationSettings.count > 0){
-                NSDictionary* urlResponseHeaders = [urlResponse allHeaderFields];
-                
-                if(urlResponseHeaders.count>0){
-                    NSString* expires = [urlResponseHeaders objectForKey:@"Expires"];
-                    
-                    double expiresAsDouble = RSS_SOURCES_DEFAULT_RESPONSE_HEADER_EXPIRES;
-                    if(expires)
-                        expiresAsDouble = expires.doubleValue;
-                    
-                    NSDate * expireDate = [NSDate dateWithTimeIntervalSinceNow:expiresAsDouble];
-                    
-                    if(expireDate){
-                        // persist the expireDate to userDefaults
-                        [userDefaults setObject:expireDate forKey:USERDEFAULTS_KEY__RSS_SOURCES_EXPIRE_DATE];
-                    }
-                }
-                
-                // persist the rss sources to userDefaults
-                [userDefaults setObject:applicationSettings forKey:USERDEFAULTS_KEY__RSS_SOURCES];
-                [userDefaults synchronize];
-            }
-        }
-        else{
-            NSLog(@"URL: %@, Status: %d", RSS_SOURCES_PLIST_URL, urlResponse.statusCode);
-        }
-    }
-    // fallback to local plist file
-    if(!applicationSettings){
-        applicationSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"app_settings" ofType:@"plist"]];
-        
-    }
-    
-    
-    return applicationSettings;
+    // TODO: retrieve settings from S3
+    return [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle]  pathForResource:@"app_settings" ofType:@"plist"]];
 }
+
 // implemented to assign popover ivar
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue isKindOfClass:[UIStoryboardPopoverSegue class]]){
