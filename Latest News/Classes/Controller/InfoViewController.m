@@ -42,7 +42,9 @@
     self.sourcesTable.layer.borderColor = [UIColor darkGrayColor].CGColor;
 
     [self.view addGestureRecognizer:uiSwipeGestureRecognizer];
-    sourcesList = @[@"http://www.aa.com.tr",
+    sourcesList = @[@"http://www.sozcu.com.tr",
+                    @"http://www.posta.com.tr",
+                    @"http://www.aa.com.tr",
                     @"http://www.iha.com.tr",
                     @"http://www.hurriyet.com.tr",
                     @"http://www.ntvmsnbc.com",
