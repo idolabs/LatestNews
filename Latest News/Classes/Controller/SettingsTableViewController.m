@@ -49,19 +49,17 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"popover opened");
+//    NSLog(@"popover opened");
     NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
     self.dirtyFlagForCategories = @"";
     for (NSDictionary* dict in categories) {
         _dirtyFlagForCategories = [_dirtyFlagForCategories stringByAppendingString:[dict objectForKey:@"category_selected"] ];
     }
-    NSLog(@"dirtyFlag: %@",_dirtyFlagForCategories);
-    
-    
+//    NSLog(@"dirtyFlag: %@",_dirtyFlagForCategories);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    NSLog(@"popover closed");
+//    NSLog(@"popover closed");
     NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
     NSString* dirtyFlagToCompare = @"";
     for (NSDictionary* dict in categories) {
@@ -71,10 +69,8 @@
         AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         MainTableViewController* mainTableViewController = (MainTableViewController*)[appDelegate.sharedContext objectForKey: [SHARED_CONTEXT_KEY__VIEW_CONTROLLERS_PREFIX stringByAppendingString: NSStringFromClass([MainTableViewController class])]];
         [mainTableViewController reloadData];
-        NSLog(@"reload called");
+//        NSLog(@"reload called");
     }
-    
-          
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
