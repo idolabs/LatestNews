@@ -60,7 +60,10 @@
     }
     else {
         // placeholder if no image available
-        cell.thumbnailImageView.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.9];
+//        cell.thumbnailImageView.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.9];
+        
+        NSString * filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"placeholder_1.png"];
+        [cell.thumbnailImageView setImage:[UIImage imageWithContentsOfFile:filePath]];
     }
 
     cell.titleLabelView.text = currentNewsItem.title;
