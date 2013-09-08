@@ -472,6 +472,11 @@
 			attributes = {
 				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = idolabs;
+				TargetAttributes = {
+					23C5E78615F253FB008DACFA = {
+						DevelopmentTeam = WNJX9WY5KE;
+					};
+				};
 			};
 			buildConfigurationList = 23C5E78115F253FB008DACFA /* Build configuration list for PBXProject "Latest News" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -657,8 +662,8 @@
 		23C5E7A015F253FB008DACFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MEHMET BAHADDIN YASAR (WNJX9WY5KE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MEHMET BAHADDIN YASAR (WNJX9WY5KE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Latest News/Latest News-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -667,10 +672,11 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "Latest News/Latest News-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "7E3CECA5-1647-40B3-8905-B62542D06BEC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7E3CECA5-1647-40B3-8905-B62542D06BEC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -678,8 +684,8 @@
 		23C5E7A115F253FB008DACFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MEHMET BAHADDIN YASAR (Z4344784SU)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MEHMET BAHADDIN YASAR (WNJX9WY5KE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MEHMET BAHADDIN YASAR (WNJX9WY5KE)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Latest News/Latest News-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -688,10 +694,12 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "Latest News/Latest News-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "7E3CECA5-1647-40B3-8905-B62542D06BEC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7E3CECA5-1647-40B3-8905-B62542D06BEC";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
