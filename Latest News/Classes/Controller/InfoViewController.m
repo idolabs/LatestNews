@@ -44,7 +44,7 @@
     [self.view addGestureRecognizer:uiSwipeGestureRecognizer];
     sourcesList = @[@"http://www.sozcu.com.tr",
                     @"http://www.posta.com.tr",
-                    @"http://www.aa.com.tr",
+                    @"http://www.ensonhaber.com",
                     @"http://www.iha.com.tr",
                     @"http://www.hurriyet.com.tr",
                     @"http://www.ntvmsnbc.com",
@@ -52,6 +52,7 @@
                     @"http://www.haberturk.com",
                     @"http://www.cnnturk.com",
                     @"http://www.zaman.com.tr",
+                    @"http://www.haber7.com",
                     @"http://www.trthaber.com",
                     @"http://www.gazetevatan.com",
                     @"http://www.sporx.com",
@@ -72,7 +73,7 @@
 }
 
 -(void) closeModalView{
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
