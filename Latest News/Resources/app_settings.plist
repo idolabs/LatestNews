@@ -81,12 +81,12 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__03__aa_guncel</key>
+		<key>1__gundem__03__ensonhaber_guncel</key>
 		<dict>
 			<key>url</key>
-			<string>http://www.aa.com.tr/rss/ajansguncel.xml</string>
+			<string>http://www.ensonhaber.com/rss/gundem.xml</string>
 			<key>name</key>
-			<string>Anadolu Ajansı</string>
+			<string>EnSonHaber</string>
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
@@ -216,6 +216,15 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
+		<key>1__gundem__18__ensonhaber_ekonomi</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.ensonhaber.com/rss/ekonomi.xml</string>
+			<key>name</key>
+			<string>EnSonHaber Ekonomi</string>
+			<key>category_key</key>
+			<string>ekonomi</string>
+		</dict>
 		<key>2__spor__1__posta_spor</key>
 		<dict>
 			<key>url</key>
@@ -270,6 +279,15 @@
 			<key>category_key</key>
 			<string>spor</string>
 		</dict>
+        <key>2__spor__7__ensonhaber_spor</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.ensonhaber.com/rss/spor.xml</string>
+			<key>name</key>
+			<string>EnSonHaber</string>
+			<key>category_key</key>
+			<string>spor</string>
+		</dict>
 		<key>3__teknoloji__1__posta_teknoloji</key>
 		<dict>
 			<key>url</key>
@@ -306,12 +324,30 @@
 			<key>category_key</key>
 			<string>teknoloji</string>
 		</dict>
+		<key>3__teknoloji__5__ensonhaber_teknoloji</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.ensonhaber.com/rss/teknoloji.xml</string>
+			<key>name</key>
+			<string>EnSonHaber Teknoloji</string>
+			<key>category_key</key>
+			<string>teknoloji</string>
+		</dict>
 		<key>4__saglik__1__cnnturk_kultur_sanat</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/kultur.sanat.xml</string>
 			<key>name</key>
 			<string>CNNTürk Kültür Sanat</string>
+			<key>category_key</key>
+			<string>kultur_sanat</string>
+		</dict>
+		<key>4__saglik__2__ensonhaber_kultur_sanat</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.ensonhaber.com/rss/kultur-sanat.xml</string>
+			<key>name</key>
+			<string>EnSonHaber Kültür Sanat</string>
 			<key>category_key</key>
 			<string>kultur_sanat</string>
 		</dict>
@@ -357,6 +393,15 @@
 			<string>http://www.stargazete.com/rss/saglik.xml</string>
 			<key>name</key>
 			<string>Star Sağlık</string>
+			<key>category_key</key>
+			<string>saglik</string>
+		</dict>
+		<key>5__saglik__6__ensonhaber_saglik</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.ensonhaber.com/rss/saglik.xml</string>
+			<key>name</key>
+			<string>EnSonHaber Sağlık</string>
 			<key>category_key</key>
 			<string>saglik</string>
 		</dict>
@@ -429,6 +474,15 @@
 			<string>http://www.magaxin.com/feed.php?type=rss&amp;search_cid=11</string>
 			<key>name</key>
 			<string>Magaxin.Com - Müzik Magazin</string>
+			<key>category_key</key>
+			<string>magazin</string>
+		</dict>
+		<key>6__magazin__9__ensonhaber_magazin</key>
+		<dict>
+			<key>url</key>
+			<string>http://www.ensonhaber.com/rss/magazin.xml</string>
+			<key>name</key>
+			<string>EnSonHaber Magazin</string>
 			<key>category_key</key>
 			<string>magazin</string>
 		</dict>
