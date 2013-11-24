@@ -171,7 +171,16 @@
 			<key>category_key</key>
 			<string>gundem</string>
 		</dict>
-		<key>1__gundem__13__posta_ekonomi</key>
+        <key>1__gundem__13__haber7_sondakika</key>
+		<dict>
+			<key>url</key>
+			<string>http://sondakika.haber7.com/sondakika.rss</string>
+			<key>name</key>
+			<string>Haber7</string>
+			<key>category_key</key>
+			<string>gundem</string>
+		</dict>
+		<key>1__gundem__14__posta_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.posta.com.tr/xml/rss/rss_8_0.xml</string>
@@ -180,7 +189,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__14__cnnturk_ekonomi</key>
+		<key>1__gundem__15__cnnturk_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.cnnturk.com/servisler/rss/24/ekonomi.xml</string>
@@ -189,7 +198,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__15__star_ekonomi</key>
+		<key>1__gundem__16__star_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.stargazete.com/rss/ekonomi.xml</string>
@@ -198,7 +207,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__16__ntvmsnbc_ekonomi</key>
+		<key>1__gundem__17__ntvmsnbc_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.ntvmsnbc.com/id/24927361/device/rss/rss.xml</string>
@@ -207,7 +216,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__17__hurriyet_ekonomi</key>
+		<key>1__gundem__18__hurriyet_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://rss.hurriyet.com.tr/rss.aspx?sectionId=4</string>
@@ -216,7 +225,7 @@
 			<key>category_key</key>
 			<string>ekonomi</string>
 		</dict>
-		<key>1__gundem__18__ensonhaber_ekonomi</key>
+		<key>1__gundem__19__ensonhaber_ekonomi</key>
 		<dict>
 			<key>url</key>
 			<string>http://www.ensonhaber.com/rss/ekonomi.xml</string>
