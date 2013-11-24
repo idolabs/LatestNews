@@ -240,6 +240,7 @@
 {
     NSMutableDictionary* rssSourcesData = [[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY_ALL_NEWS_DATA];
     [AFGDataXMLRequestOperation addAcceptableContentTypes: [NSSet setWithObjects:@"application/rss+xml", nil]];
+    [AFGDataXMLRequestOperation addAcceptableContentTypes: [NSSet setWithObjects:@"text/xml", nil]];
     NSArray* categories = (NSArray*)[[AppDelegate getSharedContextInstance] objectForKey:SHARED_CONTEXT_KEY__CATEGORIES];
     NSMutableDictionary* selectedCategoryKeys = [[NSMutableDictionary alloc] init];
     for (NSDictionary* dict in categories) {
